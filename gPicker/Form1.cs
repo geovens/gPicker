@@ -14,6 +14,7 @@ namespace WindowsFormsApplication1
 	{
 		RandomOrgApiClient ROClient;
 		List<string> Items;
+		List<string> LastItems;
 		List<Button> DeleteButtons;
 		bool Inputing;
 		int Fading;
@@ -72,18 +73,24 @@ namespace WindowsFormsApplication1
 
 		private void btPick_Click(object sender, EventArgs e)
 		{
+			if (Inputing)
+			{
+				btAdd_Click(null, null);
+				return;
+			}
 			if (Fading < 4)
 				return;
 			if (Items.Count < 2)
 				return;
-			if (Inputing)
-				Inputing = false;
+
+			LastItems = new List<string>(Items);
 
 			foreach (Button button in DeleteButtons)
 				button.Visible = false;
 
 			waiticon = 0;
 			tiWait.Enabled = true;
+			btAdd.Visible = false;
 			btPick.Image = global::Properties.Resources.wait1;
 
 			Fading = 0;
@@ -109,11 +116,20 @@ namespace WindowsFormsApplication1
 			if (e.KeyChar == 13)
 			{
 				btAdd_Click(null, null);
+				e.Handled = true;
+			}
+			else if (e.KeyChar == 27)
+			{
+				Inputing = false;
+				e.Handled = true;
 			}
 		}
 
 		private void Add(string str)
 		{
+			if (str == "")
+				return;
+
 			Items.Add(str);
 			MyButton aButton = new MyButton();
 			aButton.Width = 11;
@@ -158,7 +174,7 @@ namespace WindowsFormsApplication1
 			if (lbM.Text != lbm)
 				lbM.Text = lbm;
 
-			if (Fading < 2)
+			if (Fading <= 2)
 			{
 				DestPickTop = BaseButtonTop;
 				DestHeight = BaseHeight;
@@ -166,6 +182,8 @@ namespace WindowsFormsApplication1
 			}
 			else if (Inputing)
 			{
+				//btAdd.Visible = false;
+				//btPick.Visible = false;
 				tbInput.Top = N * LineSpace + 10;
 				DestPickTop = (N + 1) * LineSpace + BaseButtonTop;
 				DestHeight = (N + 1) * LineSpace + BaseHeight;
@@ -185,6 +203,8 @@ namespace WindowsFormsApplication1
 			else
 			{
 				tbInput.Visible = false;
+				//btAdd.Visible = true;
+				//btPick.Visible = true;
 				DestPickTop = N * LineSpace + BaseButtonTop;
 				DestHeight = N * LineSpace + BaseHeight;
 				DestWidth = maxwidth + BaseWidth;
@@ -261,7 +281,7 @@ namespace WindowsFormsApplication1
 			else if (Fading == 2)
 			{
 				tiFadetick++;
-				if (tiFadetick == 60)
+				if (tiFadetick == 30)
 				{
 					Add(Result);
 					Fading = 3;
@@ -304,7 +324,8 @@ namespace WindowsFormsApplication1
 			if (Fading >= 3)
 			{
 				waiticon = 0;
-				this.btPick.Image = global::Properties.Resources.pick;
+				btAdd.Visible = true;
+				btPick.Image = global::Properties.Resources.pick;
 				tiWait.Enabled = false;
 				return;
 			}
@@ -325,6 +346,46 @@ namespace WindowsFormsApplication1
 			Response R = ROClient.GenerateIntegers(1, 0, Items.Count - 1);
 			int ri = R.Integers[0];
 			Result = Items[ri];
+		}
+
+		private void btPick_MouseDown(object sender, MouseEventArgs e)
+		{
+			if (e.Button == System.Windows.Forms.MouseButtons.Right)
+			{
+				if (Fading < 4)
+					return;
+				if (Inputing)
+				{
+					Inputing = false;
+					tbInput.Visible = false;
+				}
+
+				if (LastItems != null)
+				{
+					while (Items.Count > 0)
+						Delete(0);
+					this.Refresh();
+					Thread.Sleep(50);
+					foreach (string str in LastItems)
+						Add(str);
+				}
+			}
+		}
+
+		private void Form1_Click(object sender, EventArgs e)
+		{
+			if (Inputing)
+			{
+				btAdd_Click(null, null);
+			}
+		}
+
+		private void lbM_Click(object sender, EventArgs e)
+		{
+			if (Inputing)
+			{
+				btAdd_Click(null, null);
+			}
 		}
 	}
 }
