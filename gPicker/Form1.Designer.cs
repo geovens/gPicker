@@ -57,7 +57,7 @@
 			this.tbInput.ImeMode = System.Windows.Forms.ImeMode.HangulFull;
 			this.tbInput.Location = new System.Drawing.Point(35, 64);
 			this.tbInput.Margin = new System.Windows.Forms.Padding(0);
-			this.tbInput.MaximumSize = new System.Drawing.Size(1000, 25);
+			this.tbInput.MaximumSize = new System.Drawing.Size(1000, 28);
 			this.tbInput.Name = "tbInput";
 			this.tbInput.Size = new System.Drawing.Size(432, 28);
 			this.tbInput.TabIndex = 2;
