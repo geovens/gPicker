@@ -1,0 +1,9 @@
+bin/Debug
+build
+
+*.pdb
+*.exp
+*.sdf
+*.suo
+*.opensdf
+*.lnk
