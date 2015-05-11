@@ -55,7 +55,7 @@
 			this.tbInput.BackColor = System.Drawing.SystemColors.Window;
 			this.tbInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.tbInput.Font = new System.Drawing.Font("Microsoft YaHei", 15.75F);
-			this.tbInput.ImeMode = System.Windows.Forms.ImeMode.HangulFull;
+			this.tbInput.ImeMode = System.Windows.Forms.ImeMode.Disable;
 			this.tbInput.Location = new System.Drawing.Point(35, 64);
 			this.tbInput.Margin = new System.Windows.Forms.Padding(0);
 			this.tbInput.MaximumSize = new System.Drawing.Size(1000, 28);
@@ -89,7 +89,7 @@
 			this.btPick.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
 			this.btPick.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btPick.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.btPick.Image = global::Properties.Resources.pick;
+			this.btPick.Image = ((System.Drawing.Image)(resources.GetObject("btPick.Image")));
 			this.btPick.Location = new System.Drawing.Point(66, 123);
 			this.btPick.Name = "btPick";
 			this.btPick.Size = new System.Drawing.Size(21, 21);
@@ -125,6 +125,7 @@
 			this.Controls.Add(this.btAdd);
 			this.Controls.Add(this.lbM);
 			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "Form1";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "gPicker";

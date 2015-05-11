@@ -134,7 +134,7 @@ namespace WindowsFormsApplication1
 			MyButton aButton = new MyButton();
 			aButton.Width = 11;
 			aButton.Height = 11;
-			aButton.Top = (Items.Count + 1) * LineSpace + 19;
+			aButton.Top = (Items.Count - 1) * LineSpace + 19;
 			aButton.FlatStyle = FlatStyle.Flat;
 			aButton.Left = 15;
 			//aButton.Left = (TextRenderer.MeasureText(str, lbM.Font)).Width + 30;
@@ -182,8 +182,7 @@ namespace WindowsFormsApplication1
 			}
 			else if (Inputing)
 			{
-				//btAdd.Visible = false;
-				//btPick.Visible = false;
+				btAdd.Image = global::Properties.Resources.ok;
 				tbInput.Top = N * LineSpace + 10;
 				DestPickTop = (N + 1) * LineSpace + BaseButtonTop;
 				DestHeight = (N + 1) * LineSpace + BaseHeight;
@@ -202,9 +201,8 @@ namespace WindowsFormsApplication1
 			}
 			else
 			{
+				btAdd.Image = global::Properties.Resources.plus;
 				tbInput.Visible = false;
-				//btAdd.Visible = true;
-				//btPick.Visible = true;
 				DestPickTop = N * LineSpace + BaseButtonTop;
 				DestHeight = N * LineSpace + BaseHeight;
 				DestWidth = maxwidth + BaseWidth;
@@ -324,8 +322,8 @@ namespace WindowsFormsApplication1
 			if (Fading >= 3)
 			{
 				waiticon = 0;
+				btPick.Image = global::Properties.Resources.dice;
 				btAdd.Visible = true;
-				btPick.Image = global::Properties.Resources.pick;
 				tiWait.Enabled = false;
 				return;
 			}
