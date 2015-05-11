@@ -139,6 +139,7 @@ namespace WindowsFormsApplication1
 			aButton.Left = 15;
 			//aButton.Left = (TextRenderer.MeasureText(str, lbM.Font)).Width + 30;
 			aButton.Click += btDelete_Click;
+			aButton.TabStop = false;
 			aButton.FlatAppearance.BorderSize = 0;
 			aButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
 			aButton.Image = global::Properties.Resources.cross_10;
