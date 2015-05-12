@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("gPicker")]
-[assembly: AssemblyCopyright("© 2015 Geovens")]
+[assembly: AssemblyCopyright("© 2015 Nai Weizhi")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
