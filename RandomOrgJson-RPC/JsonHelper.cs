@@ -129,14 +129,15 @@ namespace Demot.RandomOrgApi
 
         static string jsonObjectString;
         static int jsonObjectIndex;
-        public static JsonObject GetJsonObject(string jsonString) {
+        public static JsonObject GetJsonObject(string jsonString) 
+		{
             jsonObjectString = jsonString;
             jsonObjectIndex = 0;
 
-            if(String.IsNullOrWhiteSpace(jsonString))
+            if (jsonString == null || jsonString == "" || jsonString.Trim() == "")
                 return null;
             
-            if(skipWhiteSpace() != OpenSection)
+            if (skipWhiteSpace() != OpenSection)
                 throw new FormatException("No valid jsonString");
 
             var result = readObject();

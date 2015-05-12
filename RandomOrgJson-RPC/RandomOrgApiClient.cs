@@ -64,9 +64,10 @@ namespace Demot.RandomOrgApi
         /// </summary>
         /// <param name="apiKey">API key, used to keep track of the true random bit usage.</param>
         /// <exception cref="System.ArgumentNullException"></exception>
-        public RandomOrgApiClient(string apiKey) {
-            if(String.IsNullOrWhiteSpace(apiKey))
-                throw new ArgumentNullException("apiKey should contain a valid key.");
+        public RandomOrgApiClient(string apiKey) 
+		{
+            //if(String.IsNullOrWhiteSpace(apiKey))
+            //    throw new ArgumentNullException("apiKey should contain a valid key.");
             
             this.apiKey = apiKey;
             this.MaxBlockingTime = 3000;

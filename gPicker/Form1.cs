@@ -353,6 +353,8 @@ namespace WindowsFormsApplication1
 			{
 				if (Fading < 4)
 					return;
+				if (Items.Count > 0)
+					return;
 				if (Inputing)
 				{
 					Inputing = false;
