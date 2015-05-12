@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Threading;
 using System.Text;
+using System.IO;
 using System.Windows.Forms;
 using Demot.RandomOrgApi;
 
@@ -42,7 +43,22 @@ namespace WindowsFormsApplication1
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			ROClient = new RandomOrgApiClient("627cc29b-fabd-4f00-b0b0-2fead2262323");
+			string key;
+			key = "627cc29b-fabd-4f00-b0b0-2fead2262323";
+			if (File.Exists("key.ini"))
+			{
+				FileStream fkey = new FileStream("key.ini", FileMode.Open);
+				StreamReader srkey = new StreamReader(fkey);
+				string sLine = srkey.ReadLine();
+				if (sLine != null && sLine.Trim() != "")
+				{
+					key = sLine.Trim();
+				}
+				srkey.Close();
+				fkey.Close();
+			}
+
+			ROClient = new RandomOrgApiClient(key);
 
 			lbM.Text = "";
 			lbM.Top = 10;
@@ -344,6 +360,11 @@ namespace WindowsFormsApplication1
 			Result = null;
 			Response R = ROClient.GenerateIntegers(1, 0, Items.Count - 1);
 			int ri = R.Integers[0];
+			if (ri == -1)
+			{
+				MessageBox.Show("random.org API key invalid. Please enter a valid key in file key.ini");
+				return;
+			}
 			Result = Items[ri];
 		}
 

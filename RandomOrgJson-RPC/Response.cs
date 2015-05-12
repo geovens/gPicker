@@ -111,11 +111,14 @@ namespace Demot.RandomOrgApi
         /// </summary>
         /// <exception cref="System.InvalidOperationException"></exception>
         public int[] Integers {
-            get {
-                if(DataType == RandomOrgDataType.Integer || DataType == RandomOrgDataType.SignedInteger)
-                    return data.Integers;
-                else
-                    throw new InvalidOperationException();
+            get 
+			{
+				if (DataType == RandomOrgDataType.Integer || DataType == RandomOrgDataType.SignedInteger)
+					return data.Integers;
+				else
+				{
+					return new int[]{-1};
+				}
             }
         }
         /// <summary>
