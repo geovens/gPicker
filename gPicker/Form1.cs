@@ -148,9 +148,9 @@ namespace WindowsFormsApplication1
 
 			Items.Add(str);
 			MyButton aButton = new MyButton();
-			aButton.Width = 17;
-			aButton.Height = 17;
-			aButton.Top = (Items.Count - 1) * LineSpace + 19;
+			aButton.Width = 14;
+			aButton.Height = 14;
+			aButton.Top = (Items.Count - 1) * LineSpace + 22;
 			aButton.FlatStyle = FlatStyle.Flat;
 			aButton.Left = 35;
 			//aButton.Left = (TextRenderer.MeasureText(str, lbM.Font)).Width + 30;
@@ -184,7 +184,7 @@ namespace WindowsFormsApplication1
 			for (int i = 0; i < N; i++)
 			{
 				lbm += Items[i] + "\r\n";
-				DeleteButtons[i].Top = i * LineSpace + 19;
+				DeleteButtons[i].Top = i * LineSpace + 22;
 				int width = (TextRenderer.MeasureText(Items[i], lbM.Font)).Width;
 				if (width > maxwidth)
 					maxwidth = width;
