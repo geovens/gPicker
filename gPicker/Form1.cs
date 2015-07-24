@@ -28,9 +28,9 @@ namespace WindowsFormsApplication1
 		int DestPickTop;
 
 		const int LineSpace = 45;
-		const int BaseButtonTop = 22;
+		const int BaseButtonTop = 25;
 		const int BaseHeight = 115;
-		const int MinWidth = 135;
+		const int MinWidth = 235;
 		const int BaseWidth = 120;
         Font TextFont = new System.Drawing.Font("Microsoft YaHei", 21.5F);
 
