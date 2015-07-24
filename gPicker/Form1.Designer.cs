@@ -55,9 +55,9 @@
             // 
             this.tbInput.BackColor = System.Drawing.SystemColors.Window;
             this.tbInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbInput.Font = new System.Drawing.Font("Microsoft YaHei", 20.75F);
+            this.tbInput.Font = new System.Drawing.Font("Microsoft YaHei", 17.5F);
             this.tbInput.ImeMode = System.Windows.Forms.ImeMode.Hangul;
-            this.tbInput.Location = new System.Drawing.Point(42, 128);
+            this.tbInput.Location = new System.Drawing.Point(40, 128);
             this.tbInput.Margin = new System.Windows.Forms.Padding(0);
             this.tbInput.MaximumSize = new System.Drawing.Size(1833, 38);
             this.tbInput.Name = "tbInput";
@@ -92,10 +92,10 @@
             this.btPick.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.btPick.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btPick.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btPick.Location = new System.Drawing.Point(121, 246);
+            this.btPick.Location = new System.Drawing.Point(124, 246);
             this.btPick.Margin = new System.Windows.Forms.Padding(6);
             this.btPick.Name = "btPick";
-            this.btPick.Size = new System.Drawing.Size(32, 32);
+            this.btPick.Size = new System.Drawing.Size(26, 26);
             this.btPick.TabIndex = 0;
             this.btPick.TabStop = false;
             this.btPick.UseVisualStyleBackColor = true;
@@ -111,10 +111,10 @@
             this.btAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.btAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btAdd.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btAdd.Location = new System.Drawing.Point(59, 246);
+            this.btAdd.Location = new System.Drawing.Point(60, 246);
             this.btAdd.Margin = new System.Windows.Forms.Padding(6);
             this.btAdd.Name = "btAdd";
-            this.btAdd.Size = new System.Drawing.Size(32, 32);
+            this.btAdd.Size = new System.Drawing.Size(26, 26);
             this.btAdd.TabIndex = 3;
             this.btAdd.TabStop = false;
             this.btAdd.UseVisualStyleBackColor = true;
@@ -129,7 +129,7 @@
             this.Controls.Add(this.btAdd);
             this.Controls.Add(this.lbM);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";

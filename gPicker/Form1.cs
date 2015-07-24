@@ -27,12 +27,13 @@ namespace WindowsFormsApplication1
 		int DestWidth;
 		int DestPickTop;
 
-		const int LineSpace = 45;
-		const int BaseButtonTop = 25;
+		const int LineSpace = 40;
+		const int BaseButtonTop = 28;
 		const int BaseHeight = 115;
 		const int MinWidth = 235;
 		const int BaseWidth = 120;
-        Font TextFont = new System.Drawing.Font("Microsoft YaHei", 21.5F);
+        const int BaseItemTop = 19;
+        Font TextFont = new System.Drawing.Font("Microsoft YaHei", 17F);
 
 		public Form1()
 		{
@@ -80,7 +81,8 @@ namespace WindowsFormsApplication1
 			if (!Inputing)
 			{
 				tbInput.Text = "";
-                tbInput.Top = Items.Count * LineSpace + 14;
+                tbInput.Top = Items.Count * LineSpace + BaseItemTop;
+                tbInput.Width = 1;
 				tbInput.Visible = true;
 				tbInput.Focus();
 				Inputing = true;
@@ -156,7 +158,7 @@ namespace WindowsFormsApplication1
 			MyButton aButton = new MyButton();
 			aButton.Width = 14;
 			aButton.Height = 14;
-			aButton.Top = (Items.Count - 1) * LineSpace + 26;
+            aButton.Top = (Items.Count - 1) * LineSpace + BaseItemTop + 13;
 			aButton.FlatStyle = FlatStyle.Flat;
 			aButton.Left = (TextRenderer.MeasureText(str, TextFont)).Width + 45;
 			aButton.Click += btDelete_Click;
@@ -172,7 +174,7 @@ namespace WindowsFormsApplication1
             Label aLabel = new Label();
             aLabel.Font = TextFont;
             aLabel.AutoSize = true;
-            aLabel.Top = (Items.Count - 1) * LineSpace + 14;
+            aLabel.Top = (Items.Count - 1) * LineSpace + BaseItemTop;
             aLabel.Left = 35;
             aLabel.Text = str;
             this.Controls.Add(aLabel);
@@ -204,13 +206,13 @@ namespace WindowsFormsApplication1
 			for (int i = 0; i < N; i++)
 			{
 				lbm += Items[i] + "\r\n";
-                lbMs[i].Top = i * LineSpace + 14;
+                lbMs[i].Top = i * LineSpace + BaseItemTop;
                 if (lbMs[i].Text != Items[i])
                     lbMs[i].Text = Items[i];
                 int width = (TextRenderer.MeasureText(Items[i], TextFont)).Width;
 				if (width > maxwidth)
 					maxwidth = width;
-                DeleteButtons[i].Top = i * LineSpace + 26;
+                DeleteButtons[i].Top = i * LineSpace + BaseItemTop + 13;
                 if (DeleteButtons[i].Left != width + 45)
                 DeleteButtons[i].Left = width + 45;
 			}
@@ -224,7 +226,7 @@ namespace WindowsFormsApplication1
 			else if (Inputing)
 			{
                 btAdd.BackgroundImage = global::Properties.Resources.ok_48;
-				tbInput.Top = N * LineSpace + 14;
+                tbInput.Top = N * LineSpace + BaseItemTop;
 				DestPickTop = (N + 1) * LineSpace + BaseButtonTop;
 				DestHeight = (N + 1) * LineSpace + BaseHeight;
                 int inputwidth = (TextRenderer.MeasureText(tbInput.Text, TextFont)).Width;
