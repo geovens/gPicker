@@ -28,11 +28,11 @@ namespace WindowsFormsApplication1
 		int DestPickTop;
 
 		const int LineSpace = 45;
-		const int BaseButtonTop = 25;
-		const int BaseHeight = 120;
+		const int BaseButtonTop = 22;
+		const int BaseHeight = 115;
 		const int MinWidth = 135;
 		const int BaseWidth = 120;
-        Font TextFont = new System.Drawing.Font("Microsoft YaHei", 20.75F);
+        Font TextFont = new System.Drawing.Font("Microsoft YaHei", 21.5F);
 
 		public Form1()
 		{
@@ -80,6 +80,7 @@ namespace WindowsFormsApplication1
 			if (!Inputing)
 			{
 				tbInput.Text = "";
+                tbInput.Top = Items.Count * LineSpace + 14;
 				tbInput.Visible = true;
 				tbInput.Focus();
 				Inputing = true;
@@ -155,10 +156,9 @@ namespace WindowsFormsApplication1
 			MyButton aButton = new MyButton();
 			aButton.Width = 14;
 			aButton.Height = 14;
-			aButton.Top = (Items.Count - 1) * LineSpace + 22;
+			aButton.Top = (Items.Count - 1) * LineSpace + 26;
 			aButton.FlatStyle = FlatStyle.Flat;
-			aButton.Left = 35;
-			//aButton.Left = (TextRenderer.MeasureText(str, lbM.Font)).Width + 30;
+			aButton.Left = (TextRenderer.MeasureText(str, TextFont)).Width + 45;
 			aButton.Click += btDelete_Click;
 			aButton.TabStop = false;
 			aButton.FlatAppearance.BorderSize = 0;
@@ -172,7 +172,7 @@ namespace WindowsFormsApplication1
             Label aLabel = new Label();
             aLabel.Font = TextFont;
             aLabel.AutoSize = true;
-            aLabel.Top = (Items.Count - 1) * LineSpace + 12;
+            aLabel.Top = (Items.Count - 1) * LineSpace + 14;
             aLabel.Left = 35;
             aLabel.Text = str;
             this.Controls.Add(aLabel);
@@ -204,14 +204,14 @@ namespace WindowsFormsApplication1
 			for (int i = 0; i < N; i++)
 			{
 				lbm += Items[i] + "\r\n";
-                lbMs[i].Top = i * LineSpace + 12;
+                lbMs[i].Top = i * LineSpace + 14;
                 if (lbMs[i].Text != Items[i])
                     lbMs[i].Text = Items[i];
-				int width = (TextRenderer.MeasureText(Items[i], lbM.Font)).Width;
+                int width = (TextRenderer.MeasureText(Items[i], TextFont)).Width;
 				if (width > maxwidth)
 					maxwidth = width;
-                DeleteButtons[i].Top = i * LineSpace + 24;
-                if (DeleteButtons[i].Left != width + 40)
+                DeleteButtons[i].Top = i * LineSpace + 26;
+                if (DeleteButtons[i].Left != width + 45)
                 DeleteButtons[i].Left = width + 45;
 			}
 
@@ -224,10 +224,10 @@ namespace WindowsFormsApplication1
 			else if (Inputing)
 			{
                 btAdd.BackgroundImage = global::Properties.Resources.ok_48;
-				tbInput.Top = N * LineSpace + 12;
+				tbInput.Top = N * LineSpace + 14;
 				DestPickTop = (N + 1) * LineSpace + BaseButtonTop;
 				DestHeight = (N + 1) * LineSpace + BaseHeight;
-				int inputwidth = (TextRenderer.MeasureText(tbInput.Text, tbInput.Font)).Width;
+                int inputwidth = (TextRenderer.MeasureText(tbInput.Text, TextFont)).Width;
 				tbInput.Width = Math.Max(inputwidth + 10, 50);
 				if (inputwidth > maxwidth)
 					maxwidth = inputwidth;
@@ -295,13 +295,17 @@ namespace WindowsFormsApplication1
 			if (Fading == 1)
 			{
 				tiFadetick++;
-				Color fc = lbM.ForeColor;
-				Color bc = lbM.BackColor;
-				int nr, ng, nb;
-				nr = (int)(fc.R + (bc.R - fc.R) * 0.5);
-				ng = (int)(fc.G + (bc.G - fc.G) * 0.5);
-				nb = (int)(fc.B + (bc.B - fc.B) * 0.5);
-				lbM.ForeColor = Color.FromArgb(nr, ng, nb);
+                foreach (Label lb in lbMs)
+                {
+                    Color fc = lb.ForeColor;
+                    Color bc = lb.BackColor;
+                    int nr, ng, nb;
+                    nr = (int)(fc.R + (bc.R - fc.R) * 0.3);
+                    ng = (int)(fc.G + (bc.G - fc.G) * 0.3);
+                    nb = (int)(fc.B + (bc.B - fc.B) * 0.3);
+
+                    lb.ForeColor = Color.FromArgb(nr, ng, nb);
+                }
 				if (tiFadetick == 1)
 				{
 					Thread threadget = new Thread(ThreadGet);
@@ -323,6 +327,10 @@ namespace WindowsFormsApplication1
 				if (tiFadetick == 30)
 				{
 					Add(Result);
+                    foreach (Label lb in lbMs)
+                    {
+                        lb.ForeColor = lb.BackColor;
+                    }
 					Fading = 3;
 					tiFadetick = 0;
 				}
@@ -330,19 +338,23 @@ namespace WindowsFormsApplication1
 			else if (Fading == 3)
 			{
 				tiFadetick++;
-				Color fc = lbM.ForeColor;
-				Color dc = SystemColors.ControlText;
-				double dr, dg, db;
-				dr = (fc.R - dc.R) * 0.03;
-				dg = (fc.G - dc.G) * 0.03;
-				db = (fc.B - dc.B) * 0.03;
-				if (dr != 0 && Math.Abs(dr) < 1)
-					dr = Math.Sign(dr);
-				if (dg != 0 && Math.Abs(dg) < 1)
-					dg = Math.Sign(dg);
-				if (db != 0 && Math.Abs(db) < 1)
-					db = Math.Sign(db);
-				lbM.ForeColor = Color.FromArgb((int)(fc.R - dr), (int)(fc.G - dg), (int)(fc.B - db));
+                foreach (Label lb in lbMs)
+                {
+                    Color fc = lb.ForeColor;
+                    Color dc = SystemColors.ControlText;
+                    double dr, dg, db;
+                    dr = (fc.R - dc.R) * 0.03;
+                    dg = (fc.G - dc.G) * 0.03;
+                    db = (fc.B - dc.B) * 0.03;
+                    if (dr != 0 && Math.Abs(dr) < 1)
+                        dr = Math.Sign(dr);
+                    if (dg != 0 && Math.Abs(dg) < 1)
+                        dg = Math.Sign(dg);
+                    if (db != 0 && Math.Abs(db) < 1)
+                        db = Math.Sign(db);
+
+                    lb.ForeColor = Color.FromArgb((int)(fc.R - dr), (int)(fc.G - dg), (int)(fc.B - db));
+                }
 				if (tiFadetick == 60)
 				{
 					Fading = 4;
