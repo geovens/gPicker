@@ -17,6 +17,7 @@ namespace WindowsFormsApplication1
 		List<string> Items;
 		List<string> LastItems;
 		List<Button> DeleteButtons;
+        List<Label> lbMs;
 		bool Inputing;
 		int Fading;
 		bool InputChanged;
@@ -26,17 +27,19 @@ namespace WindowsFormsApplication1
 		int DestWidth;
 		int DestPickTop;
 
-		const int LineSpace = 36;
-		const int BaseButtonTop = 20;
-		const int BaseHeight = 110;
+		const int LineSpace = 45;
+		const int BaseButtonTop = 25;
+		const int BaseHeight = 120;
 		const int MinWidth = 135;
 		const int BaseWidth = 120;
+        Font TextFont = new System.Drawing.Font("Microsoft YaHei", 20.75F);
 
 		public Form1()
 		{
 			InitializeComponent();
 			Items = new List<string>();
 			DeleteButtons = new List<Button>();
+            lbMs = new List<Label>();
 			Fading = 4;
 			InputChanged = false;
 		}
@@ -64,6 +67,7 @@ namespace WindowsFormsApplication1
 			lbM.Top = 10;
 			btAdd.Top = BaseButtonTop;
 			btPick.Top = BaseButtonTop;
+            tbInput.Font = TextFont;
 			this.Height = BaseHeight;
 			this.Width = MinWidth;
 		}
@@ -147,6 +151,7 @@ namespace WindowsFormsApplication1
 				return;
 
 			Items.Add(str);
+
 			MyButton aButton = new MyButton();
 			aButton.Width = 14;
 			aButton.Height = 14;
@@ -163,15 +168,30 @@ namespace WindowsFormsApplication1
 			this.Controls.Add(aButton);
 			aButton.BringToFront();
 			DeleteButtons.Add(aButton);
+
+            Label aLabel = new Label();
+            aLabel.Font = TextFont;
+            aLabel.AutoSize = true;
+            aLabel.Top = (Items.Count - 1) * LineSpace + 12;
+            aLabel.Left = 35;
+            aLabel.Text = str;
+            this.Controls.Add(aLabel);
+            lbMs.Add(aLabel);
 		}
 
 		private void Delete(int i)
 		{
-			Button me = DeleteButtons[i];
-			Items.RemoveAt(i);
+			Button meb = DeleteButtons[i];
 			DeleteButtons.RemoveAt(i);
-			this.Controls.Remove(me);
-			me.Dispose();
+			this.Controls.Remove(meb);
+            meb.Dispose();
+
+            Label mel = lbMs[i];
+            lbMs.RemoveAt(i);
+            this.Controls.Remove(mel);
+            mel.Dispose();
+
+            Items.RemoveAt(i);
 		}
 
 		private void tiLayout_Tick(object sender, EventArgs e)
@@ -184,13 +204,16 @@ namespace WindowsFormsApplication1
 			for (int i = 0; i < N; i++)
 			{
 				lbm += Items[i] + "\r\n";
-				DeleteButtons[i].Top = i * LineSpace + 22;
+                lbMs[i].Top = i * LineSpace + 12;
+                if (lbMs[i].Text != Items[i])
+                    lbMs[i].Text = Items[i];
 				int width = (TextRenderer.MeasureText(Items[i], lbM.Font)).Width;
 				if (width > maxwidth)
 					maxwidth = width;
+                DeleteButtons[i].Top = i * LineSpace + 24;
+                if (DeleteButtons[i].Left != width + 40)
+                DeleteButtons[i].Left = width + 45;
 			}
-			if (lbM.Text != lbm)
-				lbM.Text = lbm;
 
 			if (Fading <= 2)
 			{
@@ -201,7 +224,7 @@ namespace WindowsFormsApplication1
 			else if (Inputing)
 			{
                 btAdd.BackgroundImage = global::Properties.Resources.ok_48;
-				tbInput.Top = N * LineSpace + 10;
+				tbInput.Top = N * LineSpace + 12;
 				DestPickTop = (N + 1) * LineSpace + BaseButtonTop;
 				DestHeight = (N + 1) * LineSpace + BaseHeight;
 				int inputwidth = (TextRenderer.MeasureText(tbInput.Text, tbInput.Font)).Width;

@@ -57,7 +57,7 @@
             this.tbInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbInput.Font = new System.Drawing.Font("Microsoft YaHei", 20.75F);
             this.tbInput.ImeMode = System.Windows.Forms.ImeMode.Hangul;
-            this.tbInput.Location = new System.Drawing.Point(61, 128);
+            this.tbInput.Location = new System.Drawing.Point(42, 128);
             this.tbInput.Margin = new System.Windows.Forms.Padding(0);
             this.tbInput.MaximumSize = new System.Drawing.Size(1833, 34);
             this.tbInput.Name = "tbInput";
