@@ -132,7 +132,14 @@
     <None Include="dice.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ok_48.png" />
+    <None Include="dice_48.png" />
+    <None Include="cross.png" />
     <Content Include="icon.ico" />
+    <None Include="wait3_48.png" />
+    <None Include="wait2_48.png" />
+    <None Include="wait1_48.png" />
+    <None Include="plus_48.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">

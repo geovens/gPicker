@@ -26,11 +26,11 @@ namespace WindowsFormsApplication1
 		int DestWidth;
 		int DestPickTop;
 
-		const int LineSpace = 28;
+		const int LineSpace = 36;
 		const int BaseButtonTop = 20;
-		const int BaseHeight = 95;
+		const int BaseHeight = 110;
 		const int MinWidth = 135;
-		const int BaseWidth = 70;
+		const int BaseWidth = 120;
 
 		public Form1()
 		{
@@ -107,7 +107,7 @@ namespace WindowsFormsApplication1
 			waiticon = 0;
 			tiWait.Enabled = true;
 			btAdd.Visible = false;
-			btPick.Image = global::Properties.Resources.wait1;
+            btPick.BackgroundImage = global::Properties.Resources.wait1_48;
 
 			Fading = 0;
 			tiFade.Enabled = true;
@@ -148,17 +148,18 @@ namespace WindowsFormsApplication1
 
 			Items.Add(str);
 			MyButton aButton = new MyButton();
-			aButton.Width = 11;
-			aButton.Height = 11;
+			aButton.Width = 17;
+			aButton.Height = 17;
 			aButton.Top = (Items.Count - 1) * LineSpace + 19;
 			aButton.FlatStyle = FlatStyle.Flat;
-			aButton.Left = 15;
+			aButton.Left = 35;
 			//aButton.Left = (TextRenderer.MeasureText(str, lbM.Font)).Width + 30;
 			aButton.Click += btDelete_Click;
 			aButton.TabStop = false;
 			aButton.FlatAppearance.BorderSize = 0;
 			aButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
-			aButton.Image = global::Properties.Resources.cross_10;
+            aButton.BackgroundImage = global::Properties.Resources.cross;
+            aButton.BackgroundImageLayout = ImageLayout.Stretch;
 			this.Controls.Add(aButton);
 			aButton.BringToFront();
 			DeleteButtons.Add(aButton);
@@ -199,7 +200,7 @@ namespace WindowsFormsApplication1
 			}
 			else if (Inputing)
 			{
-				btAdd.Image = global::Properties.Resources.ok;
+                btAdd.BackgroundImage = global::Properties.Resources.ok_48;
 				tbInput.Top = N * LineSpace + 10;
 				DestPickTop = (N + 1) * LineSpace + BaseButtonTop;
 				DestHeight = (N + 1) * LineSpace + BaseHeight;
@@ -218,7 +219,7 @@ namespace WindowsFormsApplication1
 			}
 			else
 			{
-				btAdd.Image = global::Properties.Resources.plus;
+                btAdd.BackgroundImage = global::Properties.Resources.plus_48;
 				tbInput.Visible = false;
 				DestPickTop = N * LineSpace + BaseButtonTop;
 				DestHeight = N * LineSpace + BaseHeight;
@@ -339,7 +340,7 @@ namespace WindowsFormsApplication1
 			if (Fading >= 3)
 			{
 				waiticon = 0;
-				btPick.Image = global::Properties.Resources.dice;
+                btPick.BackgroundImage = global::Properties.Resources.dice_48;
 				btAdd.Visible = true;
 				tiWait.Enabled = false;
 				return;
@@ -348,11 +349,11 @@ namespace WindowsFormsApplication1
 			if (waiticon == 3)
 				waiticon = 0;
 			if (waiticon == 0)
-				btPick.Image = global::Properties.Resources.wait1;
+                btPick.BackgroundImage = global::Properties.Resources.wait1_48;
 			else if (waiticon == 1)
-				btPick.Image = global::Properties.Resources.wait2;
+                btPick.BackgroundImage = global::Properties.Resources.wait2_48;
 			else if (waiticon == 2)
-				btPick.Image = global::Properties.Resources.wait3;
+                btPick.BackgroundImage = global::Properties.Resources.wait3_48;
 		}
 
 		private void ThreadGet()
