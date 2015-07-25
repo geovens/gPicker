@@ -29,10 +29,10 @@ namespace WindowsFormsApplication1
 
 		const int LineSpace = 35;
 		const int BaseButtonTop = 18;
-		const int BaseHeight = 100;
+		const int BaseHeight = 97;
 		const int MinWidth = 180;
 		const int BaseWidth = 90;
-        const int BaseItemTop = 10;
+        const int BaseItemTop = 11;
         Font TextFont = new System.Drawing.Font("Microsoft YaHei", 16.5F, FontStyle.Regular);
 
 		public Form1()
