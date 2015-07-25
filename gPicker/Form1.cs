@@ -29,7 +29,7 @@ namespace WindowsFormsApplication1
 
 		const int LineSpace = 35;
 		const int BaseButtonTop = 18;
-		const int BaseHeight = 97;
+		const int BaseHeight = 98;
 		const int MinWidth = 180;
 		const int BaseWidth = 90;
         const int BaseItemTop = 11;
