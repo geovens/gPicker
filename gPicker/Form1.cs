@@ -27,13 +27,13 @@ namespace WindowsFormsApplication1
 		int DestWidth;
 		int DestPickTop;
 
-		const int LineSpace = 40;
-		const int BaseButtonTop = 28;
-		const int BaseHeight = 115;
-		const int MinWidth = 235;
-		const int BaseWidth = 120;
-        const int BaseItemTop = 19;
-        Font TextFont = new System.Drawing.Font("Microsoft YaHei", 17F);
+		const int LineSpace = 35;
+		const int BaseButtonTop = 18;
+		const int BaseHeight = 100;
+		const int MinWidth = 180;
+		const int BaseWidth = 90;
+        const int BaseItemTop = 10;
+        Font TextFont = new System.Drawing.Font("Microsoft YaHei", 16.5F, FontStyle.Regular);
 
 		public Form1()
 		{
@@ -69,6 +69,8 @@ namespace WindowsFormsApplication1
 			btAdd.Top = BaseButtonTop;
 			btPick.Top = BaseButtonTop;
             tbInput.Font = TextFont;
+            this.MinimumSize = new Size(MinWidth, BaseHeight);
+            this.MaximumSize = new Size(MinWidth, BaseHeight);
 			this.Height = BaseHeight;
 			this.Width = MinWidth;
 		}
@@ -158,9 +160,9 @@ namespace WindowsFormsApplication1
 			MyButton aButton = new MyButton();
 			aButton.Width = 14;
 			aButton.Height = 14;
-            aButton.Top = (Items.Count - 1) * LineSpace + BaseItemTop + 13;
+            aButton.Top = (Items.Count - 1) * LineSpace + BaseItemTop + 11;
 			aButton.FlatStyle = FlatStyle.Flat;
-			aButton.Left = (TextRenderer.MeasureText(str, TextFont)).Width + 45;
+			aButton.Left = (TextRenderer.MeasureText(str, TextFont)).Width + 30;
 			aButton.Click += btDelete_Click;
 			aButton.TabStop = false;
 			aButton.FlatAppearance.BorderSize = 0;
@@ -175,8 +177,9 @@ namespace WindowsFormsApplication1
             aLabel.Font = TextFont;
             aLabel.AutoSize = true;
             aLabel.Top = (Items.Count - 1) * LineSpace + BaseItemTop;
-            aLabel.Left = 35;
+            aLabel.Left = 20;
             aLabel.Text = str;
+            aLabel.Click += Form1_Click;
             this.Controls.Add(aLabel);
             lbMs.Add(aLabel);
 		}
@@ -212,9 +215,9 @@ namespace WindowsFormsApplication1
                 int width = (TextRenderer.MeasureText(Items[i], TextFont)).Width;
 				if (width > maxwidth)
 					maxwidth = width;
-                DeleteButtons[i].Top = i * LineSpace + BaseItemTop + 13;
-                if (DeleteButtons[i].Left != width + 45)
-                DeleteButtons[i].Left = width + 45;
+                DeleteButtons[i].Top = i * LineSpace + BaseItemTop + 11;
+                if (DeleteButtons[i].Left != width + 30)
+                DeleteButtons[i].Left = width + 30;
 			}
 
 			if (Fading <= 2)
@@ -254,7 +257,7 @@ namespace WindowsFormsApplication1
 			if (DestPickTop != btAdd.Top)
 			{
 				double grow = DestPickTop - btAdd.Top;
-				grow = grow * 0.1;
+				grow = grow * 0.2;
 				if (Math.Abs(grow) < 1)
 				{
 					grow = Math.Sign(grow);
@@ -265,11 +268,12 @@ namespace WindowsFormsApplication1
 			if (DestHeight != this.Height)
 			{
 				double grow = DestHeight - this.Height;
-				grow = grow * 0.1;
+				grow = grow * 0.15;
 				if (Math.Abs(grow) < 1)
 				{
 					grow = Math.Sign(grow);
 				}
+                this.MaximumSize = new Size(MaximumSize.Width, Height + (int)grow);
 				this.Height += (int)grow;
 			}
 			if (DestWidth < MinWidth)
@@ -277,11 +281,12 @@ namespace WindowsFormsApplication1
 			if (DestWidth != this.Width)
 			{
 				double grow = DestWidth - this.Width;
-				grow = grow * 0.1;
+				grow = grow * 0.15;
 				if (Math.Abs(grow) < 1)
 				{
 					grow = Math.Sign(grow);
 				}
+                this.MaximumSize = new Size(Width + (int)grow, MaximumSize.Height);
 				this.Width += (int)grow;
 			}
 		}
@@ -302,9 +307,9 @@ namespace WindowsFormsApplication1
                     Color fc = lb.ForeColor;
                     Color bc = lb.BackColor;
                     int nr, ng, nb;
-                    nr = (int)(fc.R + (bc.R - fc.R) * 0.3);
-                    ng = (int)(fc.G + (bc.G - fc.G) * 0.3);
-                    nb = (int)(fc.B + (bc.B - fc.B) * 0.3);
+                    nr = (int)(fc.R + (bc.R - fc.R) * 0.5);
+                    ng = (int)(fc.G + (bc.G - fc.G) * 0.5);
+                    nb = (int)(fc.B + (bc.B - fc.B) * 0.5);
 
                     lb.ForeColor = Color.FromArgb(nr, ng, nb);
                 }
