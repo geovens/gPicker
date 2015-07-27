@@ -29,11 +29,12 @@ namespace WindowsFormsApplication1
 
 		const int LineSpace = 35;
 		const int BaseButtonTop = 18;
-		const int BaseHeight = 98;
+		int BaseHeight = 70;
 		const int MinWidth = 180;
 		const int BaseWidth = 90;
         const int BaseItemTop = 11;
-        Font TextFont = new System.Drawing.Font("Microsoft YaHei", 16.5F, FontStyle.Regular);
+		int TitleHeight;
+        Font TextFont = new System.Drawing.Font("Microsoft YaHei", 22.5F, FontStyle.Regular, GraphicsUnit.Pixel);
 
 		public Form1()
 		{
@@ -47,6 +48,11 @@ namespace WindowsFormsApplication1
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
+			//test
+			Rectangle screenRectangle = RectangleToScreen(this.ClientRectangle);
+			TitleHeight = screenRectangle.Top - this.Top;
+			BaseHeight = BaseHeight + TitleHeight;
+
 			string key;
 			key = "627cc29b-fabd-4f00-b0b0-2fead2262323";
 			if (File.Exists("key.ini"))
@@ -302,7 +308,7 @@ namespace WindowsFormsApplication1
 			if (Fading == 1)
 			{
 				tiFadetick++;
-                foreach (Label lb in lbMs)
+				foreach (Label lb in lbMs)
                 {
                     Color fc = lb.ForeColor;
                     Color bc = lb.BackColor;
