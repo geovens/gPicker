@@ -1,0 +1,8 @@
+
+v1.1 (2015.07.27)
+=================
+- Fix UI for windows 10 and high-dpi displays.
+
+v1.0 (2015.05.12)
+=================
+- First release.
