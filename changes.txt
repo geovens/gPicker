@@ -1,4 +1,8 @@
 
+v1.2 (2015.08.19)
+=================
+- Fix access to key.ini denied due to UAC.
+
 v1.1 (2015.07.27)
 =================
 - Fix UI for windows 10 and high-dpi displays.

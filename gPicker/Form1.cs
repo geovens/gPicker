@@ -57,7 +57,7 @@ namespace WindowsFormsApplication1
 			key = "627cc29b-fabd-4f00-b0b0-2fead2262323";
 			if (File.Exists("key.ini"))
 			{
-				FileStream fkey = new FileStream("key.ini", FileMode.Open);
+				FileStream fkey = new FileStream("key.ini", FileMode.Open, FileAccess.Read);
 				StreamReader srkey = new StreamReader(fkey);
 				string sLine = srkey.ReadLine();
 				if (sLine != null && sLine.Trim() != "")
