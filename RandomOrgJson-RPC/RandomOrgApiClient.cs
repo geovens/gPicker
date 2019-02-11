@@ -564,7 +564,11 @@ namespace Demot.RandomOrgApi
             return post(request);
         }
         JsonObject post(string request) {
-            JsonObject result;
+			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls
+									 | SecurityProtocolType.Tls11
+									 | SecurityProtocolType.Tls12;
+
+			JsonObject result;
             byte[] content = Encoding.UTF8.GetBytes(request);
             var httpRequest = WebRequest.Create(BaseUrl) as HttpWebRequest;
             httpRequest.Method = "POST";
