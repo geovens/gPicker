@@ -1,4 +1,8 @@
 
+v1.3 (2019.02.11)
+=================
+- Move to .NET 4.5 and use TLS1.2.
+
 v1.2 (2015.08.19)
 =================
 - Fix access to key.ini denied due to UAC.

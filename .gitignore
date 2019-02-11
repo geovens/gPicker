@@ -1,5 +1,6 @@
 bin/Debug
 build
+release
 
 *.pdb
 *.exp
