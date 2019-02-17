@@ -15,7 +15,7 @@ namespace Demot.RandomOrgApi
     {
         const string
             // HTTP header
-            BaseUrl = "https://api.random.org/json-rpc/1/invoke",
+            BaseUrl = "https://api.random.org/json-rpc/2/invoke",
             ContentType = "application/json",
             
             // Basic API methods
