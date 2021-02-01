@@ -54,7 +54,7 @@ namespace WindowsFormsApplication1
 			BaseHeight = BaseHeight + TitleHeight;
 
 			string key;
-			key = "627cc29b-fabd-4f00-b0b0-2fead2262323";
+			key = "6e8d5b98-d26d-4920-802e-8100aa096425";
 			if (File.Exists("key.ini"))
 			{
 				FileStream fkey = new FileStream("key.ini", FileMode.Open, FileAccess.Read);
